@@ -1,0 +1,5 @@
+[0m[[0m[31merror[0m] [0m[0m/home/u0416069/hw4/code/DS_Bike/src/main/scala/DS_Bin.scala:68:53: not enough arguments for method apply: (i: Int)String in class Array.[0m
+[0m[[0m[31merror[0m] [0m[0mUnspecified value parameter i.[0m
+[0m[[0m[31merror[0m] [0m[0m    val assemblerInputs = row_ds.drop("cnt").columns()[0m
+[0m[[0m[31merror[0m] [0m[0m                                                    ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
