@@ -17,7 +17,7 @@ def CreateSparkContext():
         logger.LogManager.getLogger("akka").setLevel( logger.Level.ERROR )
         logger.LogManager.getRootLogger().setLevel(logger.Level.ERROR)    
 
-    sparkConf = SparkConf().setAppName("RunDecisionTreeBinary").set("spark.ui.showConsoleProgress", "false") 
+    sparkConf = SparkConf().setAppName("RunDecisionTreeRegression").set("spark.ui.showConsoleProgress", "false") 
     sc = SparkContext(conf = sparkConf)
     print(("master="+sc.master))    
     SetLogger(sc)
@@ -27,8 +27,6 @@ sc = CreateSparkContext()
 print("read data")
 sqlContext = SQLContext(sc)
 row_df = sqlContext.read.format("csv").option("header", "true").load(Path+"dataset/hour.csv")
-#for column in row_df.columns:
-#	print(column)
 
 row_df = row_df.drop('instant').drop('dteday').drop('yr').drop('casual').drop('registered')
 df = row_df.select([ col(l).cast("double").alias(l) for l in row_df.columns] )

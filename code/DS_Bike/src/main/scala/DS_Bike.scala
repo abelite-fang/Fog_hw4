@@ -46,7 +46,6 @@ object RunDecisionTreeB {
     val spark = SparkSession.builder().appName("Spark SQL basic example").master("local[4]").config("spark.ui.showConsoleProgress","false").getOrCreate()
     import spark.implicits._
     val sch = org.apache.spark.sql.Encoders.product[Data].schema
-
     
     println("read data")
     val ds = spark.read.format("csv").option("header", "true").schema(sch).load("file:/home/u0416069/hw4/dataset/hour.csv").as[Data]
@@ -54,38 +53,23 @@ object RunDecisionTreeB {
     val x = xy(0)
     val y = xy(1)
     val dc = ds.drop("instant").drop("dteday").drop("yr").drop("casual").drop("registered").drop("cnt").columns
-    //val dc3 = ds.drop("instant").drop("dteday").drop("yr").drop("casual").drop("registered").columns
-    //val dc = ds
-    ds.show()
-    //val dc2 = Array("cnt")
-    //val dc3 = (dc2 ++ dc)
-    //val nds = ds.drop()
     val row_ds = ds.select("cnt",dc:_*).as[Data2]
-    row_ds.show()
-    
    
     println("setup pipeline")
     val assemblerInputs = row_ds.drop("cnt").columns
-    println(assemblerInputs)
     val assembler = new VectorAssembler().setInputCols(assemblerInputs).setOutputCol("t_features")
     val VectorIndexer = new VectorIndexer().setInputCol("t_features").setOutputCol("features")
     val df = new DecisionTreeRegressor().setLabelCol("cnt").setFeaturesCol("features").setImpurity("variance").setMaxDepth(10).setMaxBins(100)
     val pipeline = new Pipeline().setStages(Array(assembler, VectorIndexer, df))
     
-
     println("train model")
     val pipelineModel = pipeline.fit(x)
 
-
     print("predict")
     print("\n")
-    //val predicted=pipelineModel.transform(y).select("cnt","prediction").show(10)
     val predicted = pipelineModel.transform(y)
-    //predicted.show(10)
     val selected_col = predicted.select("season","mnth","hr","holiday","weekday","workingday","weathersit","temp","atemp","hum","windspeed","cnt","prediction")
-    //println(predicted)
     selected_col.show(10)
-
 
     println("eval model")
     val evaluator = new RegressionEvaluator().setPredictionCol("prediction").setLabelCol("cnt").setMetricName("rmse")
