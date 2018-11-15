@@ -22,7 +22,7 @@ def MkDataSource():
         c_16 = [float(field[16])]
         temp = np.concatenate((c_2, c_4to13, c_16))
         return temp
-    def extract_features(field,featureEnd): // no 16 in training
+    def extract_features(field,featureEnd): # no 16 in training
         c_2 = [float(col) for col in field[2]]
         c_4to13 = [float(col) for col in field[4:featureEnd-2]]
         temp = np.concatenate((c_2, c_4to13))
