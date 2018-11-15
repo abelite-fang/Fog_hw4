@@ -49,7 +49,7 @@ object RunDecisionTreeB {
 
     
     println("read data")
-    val ds = spark.read.format("csv").option("header", "true").schema(sch).load("file:/home/u0416069/hw4/data/hour.csv").as[Data]
+    val ds = spark.read.format("csv").option("header", "true").schema(sch).load("file:/home/u0416069/hw4/dataset/hour.csv").as[Data]
     val xy = ds.randomSplit(Array(0.7,0.3))
     val x = xy(0)
     val y = xy(1)
@@ -78,6 +78,7 @@ object RunDecisionTreeB {
 
 
     print("predict")
+    print("\n")
     //val predicted=pipelineModel.transform(y).select("cnt","prediction").show(10)
     val predicted = pipelineModel.transform(y)
     //predicted.show(10)

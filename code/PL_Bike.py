@@ -26,7 +26,7 @@ def CreateSparkContext():
 sc = CreateSparkContext()
 print("read data")
 sqlContext = SQLContext(sc)
-row_df = sqlContext.read.format("csv").option("header", "true").load(Path+"data/hour.csv")
+row_df = sqlContext.read.format("csv").option("header", "true").load(Path+"dataset/hour.csv")
 #for column in row_df.columns:
 #	print(column)
 
