@@ -78,8 +78,12 @@ object RunDecisionTreeB {
 
 
     print("predict")
-    val predicted=pipelineModel.transform(y).select("cnt","prediction").show(10)
-    println(predicted)
+    //val predicted=pipelineModel.transform(y).select("cnt","prediction").show(10)
+    val predicted = pipelineModel.transform(y)
+    //predicted.show(10)
+    val selected_col = predicted.select("season","mnth","hr","holiday","weekday","workingday","weathersit","temp","atemp","hum","windspeed","cnt","prediction")
+    //println(predicted)
+    selected_col.show(10)
 
 
     println("eval model")

@@ -1,5 +1,7 @@
-[0m[[0m[31merror[0m] [0m[0m/home/u0416069/hw4/code/DS_Bike/src/main/scala/DS_Bin.scala:68:53: not enough arguments for method apply: (i: Int)String in class Array.[0m
-[0m[[0m[31merror[0m] [0m[0mUnspecified value parameter i.[0m
-[0m[[0m[31merror[0m] [0m[0m    val assemblerInputs = row_ds.drop("cnt").columns()[0m
-[0m[[0m[31merror[0m] [0m[0m                                                    ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0m/home/u0416069/hw4/code/DS_Bike/src/main/scala/DS_Bike.scala:84:5: not found: value selected_col[0m
+[0m[[0m[31merror[0m] [0m[0m    selected_col = predicted.select("season","mnth","hr","holiday","weekday","workingday","weathersit","temp","atemp","hum","windspeed","cnt","prediction")[0m
+[0m[[0m[31merror[0m] [0m[0m    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/u0416069/hw4/code/DS_Bike/src/main/scala/DS_Bike.scala:86:5: not found: value selected_col[0m
+[0m[[0m[31merror[0m] [0m[0m    selected_col.show(10)[0m
+[0m[[0m[31merror[0m] [0m[0m    ^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
